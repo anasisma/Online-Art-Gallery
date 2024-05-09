@@ -1,0 +1,30 @@
+html
+head
+    title Users
+    link(rel='stylesheet' href='../styles.css')
+body
+    include ./header
+    br
+
+    div#main
+        if (Object.keys(users).length > 0)
+            h1 Here is a list of users:
+            br
+
+            #left.column.left
+                ul
+                each userObj, userName in users
+                    li
+                        a(href=`/users/${userObj["username"]}`) #{userObj["username"]}
+                        br
+                br
+
+                if (page > 1)
+                    a(href=`/users?page=${page - 1}`)
+                        button Back
+                    p 
+                if (page < (userCount / size))
+                    a(href=`/users?page=${parseInt(page) + 1}`)
+                        button Next
+        else
+            h1 There are no users registered yet :(

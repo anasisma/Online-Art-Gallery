@@ -1,0 +1,22 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  title Login
+  link(rel='stylesheet' href='./styles.css')
+
+body
+    include ./header
+    br
+    .loginform
+        h1 Login/Register
+        br
+        .content
+            .textinputs
+                input#username(type='text' placeholder='Username')
+                input#password(type='text' placeholder='Password')
+            .buttons
+                button#registerButton Register
+                | 
+                button#signInButton Sign in
+
+    script(src='../login.js')

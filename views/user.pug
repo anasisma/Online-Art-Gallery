@@ -1,0 +1,47 @@
+doctype html
+head
+    meta(charset='UTF-8')
+    title #{user["username"]}
+    link(rel='stylesheet' href='../styles.css')
+
+body
+    include ./header
+
+    div#main
+        #left.column.left
+            h1 #{user["username"]}
+            br
+            h3#typeHeader User type: #{user["type"]}
+
+        #middle.column.middle
+            //- check if any categories exist
+            //- if there are no categories, then there can be no items, so no need to show anything
+            if (Object.keys(user["followedArtists"]).length > 0)
+                h2 Followed artists:
+                div#followedArtistsDiv
+                    each artistItems, artistName in user["followedArtists"]
+                        a(href=`/artists/${artistName}`) #{artistName}
+                        br
+            else 
+                h2 This user follows nobody
+            br
+            if (Object.keys(user["likedArt"]).length > 0)
+                h2 Liked artworks:
+                div#likedArtDiv
+                    each artObj, artName in user["likedArt"]
+                        a(href=`/gallery/${artName}`) #{artName}
+                        br
+            else 
+                h2 This user has no likes
+            br
+            if (Object.keys(user["reviews"]).length > 0)
+                h2 Reviews: 
+                div#reviewsDiv
+                    each reviewObj, reviewIndex in user["reviews"]
+                        p= reviewObj["review"]
+                        br
+                        p Left on: 
+                            a(href=`/gallery/${reviewObj["artwork"]}`) #{reviewObj["artwork"]}
+                        br
+            else 
+                h2 This user made no reviews

@@ -1,0 +1,24 @@
+html
+head
+    title Artists
+    link(rel='stylesheet' href='../styles.css')
+body
+    include ./header
+
+    div#main
+        h1 Here is a list of artists:
+        br
+
+        #left.column.left
+            each artistObj, artistName in artists
+                a(href=`/artists/${artistObj["name"]}`) #{artistObj["name"]}
+                br
+            br
+
+            if (page > 1)
+                a(href=`/artists?page=${page - 1}`)
+                    button Back
+                p 
+            if (page < (artCount / size))
+                a(href=`/artists?page=${parseInt(page) + 1}`)
+                    button Next

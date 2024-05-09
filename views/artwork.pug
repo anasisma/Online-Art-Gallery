@@ -1,0 +1,47 @@
+html
+head
+    title #{art["name"]}
+    link(rel='stylesheet' href='../styles.css')
+
+body
+    include ./header
+    br
+    div#main
+        #left.column.left
+            h1 #{art["name"]}
+            br
+            h3 By: 
+                a(href=`/artists/${art["artist"]}`) #{art["artist"]}
+            
+            h4 Created in #{art["year"]}
+            h4 Category: #{art["category"]}
+            h4 Medium: #{art["medium"]}
+            p <strong>Description:</strong> <em>#{art["description"]}</em>
+            br
+            br
+            button#likeButton Like/unlike
+            p  Likes: #{reviews[art["name"]]["likeCount"]}
+            br
+            br
+            button#leaveReviewButton Leave review
+
+        #middle.column.middle
+            img(src=`${art["image"]}`, alt=`image: ${art["name"]}` width='400', height='400', overflow="hidden")
+            br
+            br
+            if (Object.keys(reviews[art["name"]]["reviews"]).length > 0)
+                h2 Reviews: 
+                div#reviewsDiv
+                    each reviewObj, reviewIndex in reviews[art["name"]]["reviews"]
+                        p= reviewObj["review"]
+                        br
+                        p By: #{reviewObj["reviewer"]}
+                        br
+                        br
+
+
+        #right.column.right
+
+    script.
+        const data = !{JSON.stringify(art)};
+    script(src='../artScript.js')

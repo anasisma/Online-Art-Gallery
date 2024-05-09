@@ -1,0 +1,41 @@
+doctype html
+head
+    meta(charset='UTF-8')
+    title Add artwork
+    link(rel='stylesheet' href='./styles.css')
+
+body
+    include ./header
+
+    div#main
+        h1 Welcome to the add artwork page!
+        br
+        #left.column.left
+            p Artwork name: 
+            br
+            input#nameInput(type="text", placeholder='Enter name here')
+            br
+            p Year created: 
+            br
+            input#yearInput(type="text", placeholder='Enter year here')
+            br
+            p Category: 
+            br
+            input#cateInput(type="text", placeholder='Enter category here')
+            br
+            p Medium: 
+            br
+            input#mediInput(type="text", placeholder='Enter medium here')
+            br
+            p Description: 
+            br
+            textarea#descInput(rows=4, cols=25, placeholder='Enter description here')
+            br
+            p URL to art: 
+            br
+            input#urlInput(type="text", placeholder='Enter url here')
+            br
+            br
+            button#submitArt Submit
+
+    script(src='../addArt.js')

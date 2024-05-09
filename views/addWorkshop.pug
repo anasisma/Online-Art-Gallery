@@ -1,0 +1,21 @@
+doctype html
+head
+    meta(charset='UTF-8')
+    title Create a workshop
+    link(rel='stylesheet' href='./styles.css')
+
+body
+    include ./header
+
+    div#main
+        h1 Welcome to the create a workshop page!
+        br
+        #left.column.left
+            p Workshop name: 
+            br
+            input#nameInput(type="text", placeholder='Enter name here')
+            br
+            br
+            button#submitWorkshop Submit
+
+    script(src='../addWorkshop.js')

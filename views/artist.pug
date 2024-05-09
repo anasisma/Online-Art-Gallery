@@ -1,0 +1,43 @@
+doctype html
+head
+    meta(charset='UTF-8')
+    title #{artist["name"]}
+    link(rel='stylesheet' href='../styles.css')
+
+body
+    include ./header
+
+    div#main
+        #left.column.left
+            h1 #{artist["name"]}
+            br
+            if (user != artist["name"])
+                button#followButton Follow/unfollow artist
+                br
+        #middle.column.middle
+            if (Object.keys(artist["works"]).length > 0)
+                h1 Artist's list of works: 
+                br
+                ul#artList 
+                    each artwork in artist["works"]
+                        li 
+                            a(href=`/gallery/${artwork}`) #{artwork}
+                            br
+            else 
+                h1 This artist has not published any artworks.
+            br
+            if (Object.keys(artist["workshops"]).length > 0)
+                h1 Artist's workshops: 
+                br
+                ul#workshopList 
+                    each workshopItem, workshopID in artist["workshops"]
+                        li 
+                            a(href=`/workshop/${artist["name"]}/${workshopID}`) #{workshopItem["name"]}
+                            img.joinWrkshp(src='/add.png' id=`join-${workshopID}` alt='joinWrkshp' style='width:20px; height:20px;')
+                            br
+            else 
+                h1 This artist has no workshops.
+
+    script.
+        const data = !{JSON.stringify(artist)};
+    script(src='../artistScript.js')
